@@ -1,24 +1,21 @@
 package server.config;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
 
-/**
- * Created by ilamoskalev on 24.02.2018.
- */
 public class Config {
 
     private static final String CONFIG_PATH = "/Users/ilamoskalev/Desktop/Highload/httpd.conf";
     private int port;
     private int threadLimit;
+    @NotNull
     private String documenRoot;
 
-    public Config() throws IOException {
-        final List<String> conf = Files.lines(Paths.get(CONFIG_PATH)).collect(Collectors.toList());
-        for (String str : conf) {
+    public Config() throws IOException, NumberFormatException {
+        Files.lines(Paths.get(CONFIG_PATH)).forEach(str -> {
             final String[] value = str.split(" ");
             switch (value[0]) {
                 case "listen":
@@ -30,10 +27,8 @@ public class Config {
                 case "document_root":
                     documenRoot = value[1];
                     break;
-                default:
-                    throw new IOException("bad config");
             }
-        }
+        });
     }
 
 
@@ -45,6 +40,7 @@ public class Config {
         return threadLimit;
     }
 
+    @NotNull
     public String getDocumenRoot() {
         return documenRoot;
     }

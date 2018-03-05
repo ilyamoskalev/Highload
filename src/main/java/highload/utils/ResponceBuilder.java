@@ -1,9 +1,9 @@
-package highload.responce;
+package highload.utils;
 
 import java.util.Date;
 
-public class Responce {
-    public static String okWithContent(int length, String contentType) {
+public class ResponceBuilder {
+        public static String okWithContent(long length, String contentType) {
         return "HTTP/1.1 200 OK" + "\r\n" +
                 "Date: " + new Date().toString() + "\r\n" +
                 "Server: MyServer \r\n"+
@@ -12,7 +12,7 @@ public class Responce {
                 "Connection: " + "Closed" + "\r\n\r\n";
     }
 
-    public static String serverOK() {
+    public static String ok() {
         return "HTTP/1.1 200 OK " + "\r\n" +
                 "Date: " + new Date().toString() + "\r\n" +
                 "Server: MyServer \r\n"+
@@ -20,7 +20,6 @@ public class Responce {
     }
 
     public static String forbidden() {
-
         return "HTTP/1.1 403 Forbidden" + "\r\n"+
                 "Date: " + new Date().toString() + "\r\n" +
                 "Server: MyServer \r\n"+

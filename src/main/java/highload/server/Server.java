@@ -12,11 +12,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
+import org.jetbrains.annotations.NotNull;
 
 public class Server {
+    @NotNull
     private Config config;
 
-    public Server(Config config) {
+    public Server(@NotNull Config config) {
         this.config = config;
     }
 

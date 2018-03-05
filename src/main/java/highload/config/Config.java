@@ -1,4 +1,4 @@
-package server.config;
+package highload.config;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -9,8 +9,10 @@ import java.nio.file.Paths;
 public class Config {
 
     private static final String CONFIG_PATH = "/Users/ilamoskalev/Desktop/Highload/httpd.conf";
-    private int port;
-    private int threadLimit;
+    @NotNull
+    private Integer port;
+    @NotNull
+    private Integer threadLimit;
     @NotNull
     private String documenRoot;
 
@@ -31,12 +33,13 @@ public class Config {
         });
     }
 
-
-    public int getPort() {
+    @NotNull
+    public Integer getPort() {
         return port;
     }
 
-    public int getThreadLimit() {
+    @NotNull
+    public Integer getThreadLimit() {
         return threadLimit;
     }
 

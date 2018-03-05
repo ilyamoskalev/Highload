@@ -20,12 +20,11 @@ public class ServerChannel extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws UnsupportedEncodingException {
         final Request request = new Request((String) msg);
+        ReferenceCountUtil.release(msg);
         final Responce responce = new Responce(documentRoot, request);
         final String resp = responce.getResponce();
         final ByteBuf respData = ctx.alloc().buffer(resp.length());
         respData.writeBytes(resp.getBytes());
-        System.out.println(request.getMethod());
-        System.out.println(resp);
         if (request.getMethod() != null) {
             final ChannelFuture future;
             if (request.getMethod().equals("HEAD") || responce.getFile() == null) {
@@ -36,7 +35,5 @@ public class ServerChannel extends ChannelInboundHandlerAdapter {
             }
             future.addListener(ChannelFutureListener.CLOSE);
         }
-
-        ReferenceCountUtil.release(msg);
     }
 }

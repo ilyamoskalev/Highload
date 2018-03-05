@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class Config {
 
-    private static final String CONFIG_PATH = "/Users/ilamoskalev/Desktop/Highload/httpd.conf";
+    private static final String CONFIG_PATH = "/home/parallels/Desktop/Highload/httpd.conf";
     @NotNull
     private Integer port;
     @NotNull
